@@ -104,6 +104,6 @@ Aplicação será iniciada em: http://localhost:5173
 - CSS por componente: facilita manutenção e leitura
 
 Autor: Guilherme Guimarães
-Projeto desenvolvido para fins de aprendizado e portfólio, e demonstração de boas práticas em React.
+- Projeto desenvolvido para fins de aprendizado e portfólio, e demonstração de boas práticas em React.
 
 Obs: O frontend depende do backend para funcionamento completo. O projeto foi desenvolvido com foco em aprendizado e portfólio.

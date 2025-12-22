@@ -106,7 +106,7 @@ Verificar README de cada pasta para mais informações.
 - Código comentado organizado e legível
 
 Autor: Guilherme Guimarães
-Projeto desenvolvido para fins educacionais e demonstração de boas práticas em desenvolvimento Full Stack.
+- Projeto desenvolvido para fins educacionais e demonstração de boas práticas em desenvolvimento Full Stack.
 
 Obs: 
 - O frontend depende do backend para funcionamento completo
