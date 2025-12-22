@@ -1,0 +1,88 @@
+
+/* Formulário */
+.formulario {
+  background: #ffffff;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.formulario-geral {
+  display: flex;
+  justify-content: center;
+    margin: 20px 0;
+}
+
+/* Inputs */
+.formulario input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.formulario input::placeholder {
+  color: #9ca3af;
+}
+
+.formulario input:focus {
+  outline: none;
+  border-color: #7CC573;
+  box-shadow: 0 0 0 3px rgba(147, 233, 135, 0.15);
+}
+
+/* Botão */
+.but1 {
+  margin-top: 10px;
+  padding: 12px;
+  background: #7CC573;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.but1:hover {
+  background: #598a52;
+  transform: translateY(-1px);
+}
+
+.but1:active {
+  transform: translateY(0);
+}
+
+/* Mensagens de erro */
+.erro {
+  font-size: 13px;
+  color: #dc2626;
+  margin-top: -4px;
+}
+
+/* Animação suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .formulario {
+    padding: 24px;
+  }
+}

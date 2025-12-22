@@ -1,0 +1,108 @@
+.tabela-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 0px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* CONTROLES */
+.tabela-controles {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tabela-controles select {
+  margin: 0 6px;
+  padding: 4px;
+}
+
+/* TABELA */
+.tabela-clientes {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela-clientes th,
+.tabela-clientes td {
+  border: 1px solid #b1b1b1;
+  padding: 10px;
+  text-align: left;
+}
+
+.tabela-clientes th {
+  background: #e6eee5;
+  font-weight: 600;
+}
+
+.tabela-clientes tr:nth-child(even) {
+  background: #e6eee5;
+}
+
+.tabela-clientes tr:hover {
+  background: #aadba4;
+}
+
+/* PAGINAÇÃO */
+.paginacao {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+}
+
+.paginacao button {
+  padding: 6px 12px;
+  border: none;
+  background: #7CC573;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.paginacao button:disabled {
+  background: #9cc2a1;
+  cursor: not-allowed;
+}
+
+.sem-registros {
+  text-align: center;
+  padding: 20px;
+  color: #658b6b;
+}
+
+/* Desktop por padrão */
+.lista-mobile {
+  display: none;
+}
+
+/* MOBILE */
+@media (max-width: 650px) {
+  .tabela-clientes {
+    display: none;
+  }
+
+  .lista-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card-cliente {
+    background: #f8fff4;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-size: 14px;
+  }
+
+  .card-cliente:hover {
+    background-color: #a4bba7;
+  }
+
+  .card-cliente p {
+    margin: 4px 0;
+  }
+}
