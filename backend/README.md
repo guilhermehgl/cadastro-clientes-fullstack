@@ -89,7 +89,10 @@ As validações principais são feitas no backend para garantir integridade dos 
 - CPF obrigatório e único
 - Estrutura validada via Mongoose
 
-Autor: Guilherme Guimarães
-- Projeto desenvolvido para fins de aprendizado e portfólio, com foco em boas práticas de desenvolvimento backend.
+## Observações 
 
-Obs: Este projeto foi estruturado pensando em ambiente profissional, seguindo padrões utilizados no mercado para APIs REST com Node.js.
+- Projeto desenvolvido para fins de aprendizado e portfólio, com foco em boas práticas de desenvolvimento backend.
+- Este projeto foi estruturado pensando em ambiente profissional, seguindo padrões utilizados no mercado para APIs REST com Node.js.
+
+## Autoria 
+- Guilherme Henrique Guimarães Lima

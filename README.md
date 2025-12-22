@@ -105,10 +105,12 @@ Verificar README de cada pasta para mais informações.
 - Uso de variáveis de ambiente
 - Código comentado organizado e legível
 
-Autor: Guilherme Guimarães
-- Projeto desenvolvido para fins educacionais e demonstração de boas práticas em desenvolvimento Full Stack.
+## Observações
 
-Obs: 
+- Projeto desenvolvido para fins educacionais e demonstração de boas práticas em desenvolvimento Full Stack.
 - O frontend depende do backend para funcionamento completo
 - As validações são duplicadas propositalmente (UX + segurança)
 - Projeto desenvolvido com foco em aprendizado e portfólio profissional
+
+## Autoria
+- Guilherme Henrique Guimarães Lima
