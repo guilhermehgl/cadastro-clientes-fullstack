@@ -35,7 +35,7 @@ O projeto foi estruturado seguindo boas práticas de organização, componentiza
 ---
 
 ## Estrutura do Projeto
-
+```
 Cadastro_Clientes/
 ├── backend/
 │   ├── src/
@@ -61,7 +61,7 @@ Cadastro_Clientes/
 │   └── README.md
 │
 └── README.md
-
+```
 ---
 
 ## Pré-requisitos

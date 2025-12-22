@@ -23,21 +23,24 @@ O projeto foi estruturado seguindo boas práticas de organização e separação
 - MongoDB rodando localmente ou em cloud (MongoDB Atlas)
 
 ## Estrutura do Projeto
+
+```plaintext
 backend/
 ├── src/
-│ ├── config/
-│ │ └── db.js
-│ ├── controllers/
-│ │ └── clientController.js
-│ ├── models/
-│ │ └── Cliente.js
-│ ├── routes/
-│ │ └── clienteRoutes.js
-│ ├── app.js
-│ └── server.js
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   └── clientController.js
+│   ├── models/
+│   │   └── Cliente.js
+│   ├── routes/
+│   │   └── clienteRoutes.js
+│   ├── app.js
+│   └── server.js
 ├── .env.example
 ├── package.json
 └── README.md
+```
 
 ---
 

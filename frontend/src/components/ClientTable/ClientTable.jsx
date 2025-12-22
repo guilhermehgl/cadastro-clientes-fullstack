@@ -3,20 +3,21 @@ import { calcularIdade } from "../../utils/calcularIdade";
 import ClientFind from "./ClientFind";
 import "./clientTable.css";
 
+// Componente da tabela de clientes com busca, ordenação e paginação
 export default function ClientTable({ clientes }) {
-  const [busca, setBusca] = useState("");
-  const [ordem, setOrdem] = useState("asc");
-  const [itensPorPagina, setItensPorPagina] = useState(10);
-  const [paginaAtual, setPaginaAtual] = useState(1);
+  const [busca, setBusca] = useState("");            // Filtro de busca por nome
+  const [ordem, setOrdem] = useState("asc");         // Ordem alfabética
+  const [itensPorPagina, setItensPorPagina] = useState(10); // Quantidade de itens por página
+  const [paginaAtual, setPaginaAtual] = useState(1); // Controle da página atual
 
-  // 🔎 FILTRO
+  // Filtra clientes pelo nome
   function filtrarClientes() {
     return clientes.filter(cliente =>
       cliente.nome.toLowerCase().includes(busca.toLowerCase())
     );
   }
 
-  // 🔃 ORDENAÇÃO (sem mutar o array original)
+  // Ordena clientes sem alterar o array original
   function ordenarClientes(lista) {
     return [...lista].sort((a, b) =>
       ordem === "asc"
@@ -25,22 +26,18 @@ export default function ClientTable({ clientes }) {
     );
   }
 
-  // 🔎 + 🔃
+  // Aplica filtro + ordenação
   const clientesProcessados = ordenarClientes(filtrarClientes());
 
-  // 📄 PAGINAÇÃO
-  const totalPaginas = Math.ceil(
-    clientesProcessados.length / itensPorPagina
-  );
-
+  // Cálculo da paginação
+  const totalPaginas = Math.ceil(clientesProcessados.length / itensPorPagina);
   const inicio = (paginaAtual - 1) * itensPorPagina;
   const fim = inicio + itensPorPagina;
-
   const clientesPaginados = clientesProcessados.slice(inicio, fim);
 
   return (
     <div className="tabela-container">
-      {/* BUSCA + ORDEM */}
+      {/* Componente de busca e ordenação */}
       <ClientFind
         busca={busca}
         setBusca={setBusca}
@@ -49,7 +46,7 @@ export default function ClientTable({ clientes }) {
         setPaginaAtual={setPaginaAtual}
       />
 
-      {/* CONTROLE DE QUANTIDADE */}
+      {/* Controle de quantidade de itens por página */}
       <div className="tabela-controles">
         <label>
           Mostrar
@@ -57,7 +54,7 @@ export default function ClientTable({ clientes }) {
             value={itensPorPagina}
             onChange={e => {
               setItensPorPagina(Number(e.target.value));
-              setPaginaAtual(1);
+              setPaginaAtual(1); // Sempre resetar para a primeira página
             }}
           >
             <option value={10}>10</option>
@@ -67,7 +64,7 @@ export default function ClientTable({ clientes }) {
         </label>
       </div>
 
-      {/* TABELA */}
+      {/* Tabela desktop */}
       <table className="tabela-clientes">
         <thead>
           <tr>
@@ -77,7 +74,6 @@ export default function ClientTable({ clientes }) {
             <th>CPF</th>
           </tr>
         </thead>
-
         <tbody>
           {clientesPaginados.map(cliente => (
             <tr key={cliente._id}>
@@ -98,7 +94,7 @@ export default function ClientTable({ clientes }) {
         </tbody>
       </table>
 
-      {/* LISTA (MOBILE) */}
+      {/* Lista mobile */}
       <div className="lista-mobile">
         {clientesPaginados.map(cliente => (
           <div className="card-cliente" key={cliente._id}>
@@ -114,7 +110,7 @@ export default function ClientTable({ clientes }) {
         )}
       </div>
 
-      {/* PAGINAÇÃO */}
+      {/* Paginação */}
       <div className="paginacao">
         <button
           disabled={paginaAtual === 1}

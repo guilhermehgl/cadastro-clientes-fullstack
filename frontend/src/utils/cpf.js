@@ -1,3 +1,5 @@
+// Função para definir o que pode ser digitador no campo email e formatação de pontos e traços.
+
 export function mascararCPF(valor) {
   return valor
     .replace(/\D/g, "")              // remove tudo que não é número

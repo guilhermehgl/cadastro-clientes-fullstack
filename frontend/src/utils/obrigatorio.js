@@ -1,3 +1,5 @@
+// Obrigando a escrever todos os campos no formulário
+
 const nomesAmigaveis = {
   nome: "Nome",
   email: "Email",

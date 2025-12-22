@@ -1,3 +1,5 @@
+//Validação simples de nome e sobrenome
+
 export function validarNome(nome) {
   const partes = nome.trim().split(/\s+/);
 

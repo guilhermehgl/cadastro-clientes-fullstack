@@ -25,22 +25,22 @@ O projeto foi estruturado com foco em componentização, organização de códig
 ---
 
 ## Estrutura do Projeto
-
+```
 frontend/
 ├── src/
 │   ├── components/
 │   │   ├── ClientForm/
 │   │   │   ├── ClientForm.jsx
-│   │   │   └── clientForm.css
+│   │   │   └── ClientForm.css
 │   │   ├── ClientTable/
 │   │   │   ├── ClientTable.jsx
-│   │   │   └── clientTable.css
-│   │   ├── Pesquisa/
+│   │   │   └── ClientTable.css
+│   │   ├── ClientFind/
 │   │   │   ├── ClientFind.jsx
-│   │   │   └── clientFind.css
+│   │   │   └── ClientFind.css
 │   │   └── Modal/
 │   │       ├── Modal.jsx
-│   │       └── modal.css
+│   │       └── Modal.css
 │   ├── services/
 │   │   └── api.js
 │   ├── utils/
@@ -54,7 +54,7 @@ frontend/
 ├── index.html
 ├── package.json
 └── README.md
-
+```
 
 ---
 
