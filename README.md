@@ -11,10 +11,9 @@ Sistema full stack para cadastro e consulta de clientes, com frontend em React e
 ![Preview do sistema](./docs/demo.gif)
 
 ## Deploy
-```md
-- Frontend: [https://cadastro-clientes-fullstack.vercel.app/](https://cadastro-clientes-fullstack.vercel.app/)
-- Backend: [https://cadastro-clientes-fullstack.onrender.com/](https://cadastro-clientes-fullstack.onrender.com/)
-```
+- Frontend: [cadastro-clientes-fullstack.vercel.app/](https://cadastro-clientes-fullstack.vercel.app/)
+- Backend: [cadastro-clientes-fullstack.onrender.com/](https://cadastro-clientes-fullstack.onrender.com/)
+
 
 ## Sobre o Projeto
 
