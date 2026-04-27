@@ -11,12 +11,6 @@ Sistema full stack para cadastro e gestão de clientes, com foco em boas prátic
 
 ![Preview do sistema](./docs/demo.gif)
 
-Se ainda nao tiver GIF, use uma imagem temporaria:
-
-```md
-![Preview do sistema](./docs/preview.png)
-```
-
 ## Sobre o Projeto
 
 Este projeto simula um cenário real de aplicação web para cadastro de clientes, com:
@@ -164,15 +158,6 @@ Base URL (produção): `https://cadastro-clientes-fullstack.onrender.com`
 }
 ```
 
-## Testes
-
-Atualmente o projeto nao possui testes automatizados implementados.
-
-Como validação mínima durante desenvolvimento:
-
-- lint no frontend: `npm run lint`
-- validação funcional manual do fluxo de cadastro/listagem
-
 ## Deploy
 
 - Frontend (Vercel): [https://cadastro-clientes-fullstack.vercel.app/](https://cadastro-clientes-fullstack.vercel.app/)
@@ -188,8 +173,6 @@ Para produção, manter no backend:
 - Implementar autenticação e autorização (JWT)
 - Adicionar edição e exclusão de clientes
 - Cobertura com testes unitários e de integração
-- Documentação da API com Swagger/OpenAPI
-- Pipeline de CI/CD com validação automática
 - Logs estruturados e monitoramento de erros
 
 ## Autor
