@@ -19,6 +19,25 @@ app.use(express.json());
 // Conecta ao banco de dados ao iniciar a aplicação
 connectDB();
 
+// Rota raiz para indicar que a API está ativa
+app.get("/", (_req, res) => {
+  res.json({
+    message: "Backend está online"
+  });
+});
+
+// Evita 404 de favicon ao abrir a API no navegador
+app.get("/favicon.ico", (_req, res) => {
+  res.status(204).end();
+});
+
+// Rota de status para validação rápida de saúde da API
+app.get("/status", (_req, res) => {
+  res.json({
+    message: "Backend está online"
+  });
+});
+
 // Define o prefixo das rotas
 app.use("/clientes", clienteRoutes);
 
