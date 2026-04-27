@@ -80,7 +80,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
 
 // Permite receber JSON no body das requisições
 app.use(express.json());
