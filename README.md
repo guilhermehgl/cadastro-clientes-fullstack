@@ -1,11 +1,10 @@
 # Cadastro de Clientes Full Stack
 
-Sistema full stack para cadastro e gestão de clientes, com foco em boas práticas de arquitetura, validação de dados e experiência de uso.
+Sistema full stack para cadastro e consulta de clientes, com frontend em React e backend em Node.js/Express integrado ao MongoDB Atlas.
 
 [![Frontend - Vercel](https://img.shields.io/badge/Frontend-Vercel-000?logo=vercel)](https://cadastro-clientes-fullstack.vercel.app/)
 [![Backend - Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=000)](https://cadastro-clientes-fullstack.onrender.com/)
 [![MongoDB Atlas](https://img.shields.io/badge/Database-MongoDB_Atlas-13AA52?logo=mongodb&logoColor=fff)](https://www.mongodb.com/atlas)
-[![Status](https://img.shields.io/badge/Status-Online-success)](https://cadastro-clientes-fullstack.vercel.app/)
 
 ## Preview
 
@@ -13,77 +12,57 @@ Sistema full stack para cadastro e gestão de clientes, com foco em boas prátic
 
 ## Sobre o Projeto
 
-Este projeto simula um cenário real de aplicação web para cadastro de clientes, com:
+Este projeto demonstra uma aplicação web completa com foco em:
 
-- frontend React para interface e interação do usuário
-- backend Node.js + Express para API REST
-- MongoDB Atlas para persistência em nuvem
-- deploy em produção com Vercel (frontend) e Render (backend)
+- separação clara entre frontend e backend
+- validação de dados no cliente e no servidor
+- organização em camadas para facilitar manutenção e evolução
+- deploy em produção com Vercel + Render
 
 ## Funcionalidades
 
-- Cadastro de clientes via modal
-- Listagem de clientes em tabela
-- Pesquisa por nome
-- Ordenação alfabética (A-Z e Z-A)
+- Cadastro de clientes
+- Listagem em tabela
+- Busca por nome
+- Ordenação alfabética
 - Paginação
-- Validação de formulário no frontend
-- Validação de dados e tratamento de erros no backend
-- Mensagens de erro amigáveis para duplicidade (email/cpf)
+- Mensagens de erro de validação/duplicidade
 
 ## Diferenciais Técnicos
 
-- Separação por camadas no backend (`routes`, `controllers`, `models`, `config`)
-- Frontend componentizado com responsabilidades bem definidas
-- CORS com whitelist configurável por variável de ambiente (`CORS_ORIGINS`)
-- Tratamento explícito de erros de validação e duplicidade no MongoDB
-- API com endpoint de health check (`/status`) para observabilidade básica
-- Configuração pronta para ambiente local e produção
+- Arquitetura em camadas no backend (`routes`, `controllers`, `models`, `config`)
+- Componentização no frontend com regras de negócio em `utils`
+- CORS baseado em whitelist (`CORS_ORIGINS`) para ambientes reais
+- Health checks da API para validação de disponibilidade (`/` e `/status`)
 
-## Stack de Tecnologias
-
-### Frontend
-
-![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff)
-![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)
-![ESLint](https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=fff)
-
-### Backend
-
-![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=fff)
-![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=fff)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=fff)
-![Mongoose](https://img.shields.io/badge/Mongoose-880000?logo=mongoose&logoColor=fff)
-![CORS](https://img.shields.io/badge/CORS-Enabled-blue)
-
-## Arquitetura (Visão Simples)
+## Arquitetura (Visão Geral)
 
 ```mermaid
 flowchart LR
-  A["Usuario (Browser)"] --> B["Frontend (React/Vercel)"]
-  B --> C["Backend API (Express/Render)"]
-  C --> D["MongoDB Atlas"]
+  U["Usuário"] --> F["Frontend (React/Vercel)"]
+  F --> B["Backend API (Express/Render)"]
+  B --> D["MongoDB Atlas"]
 ```
 
-## Como Executar Localmente
+## Executar Localmente
 
-### 1. Clonar o repositório
+### Requisitos
+
+- Node.js 18+
+- npm 9+
+- Git
+- MongoDB local ou conta no MongoDB Atlas
+
+### Passo a passo
+
+1. Clonar repositório
 
 ```bash
 git clone https://github.com/guilhermehgl/cadastro-clientes-fullstack.git
 cd cadastro-clientes-fullstack
 ```
 
-### 2. Configurar variáveis de ambiente
-
-Crie os arquivos:
-
-- `backend/.env`
-- `frontend/.env`
-
-Com os valores:
+2. Configurar variáveis de ambiente
 
 ```env
 # backend/.env
@@ -97,7 +76,7 @@ CORS_ORIGINS=http://localhost:5173
 VITE_API_URL=http://localhost:3000
 ```
 
-### 3. Subir o backend
+3. Subir backend
 
 ```bash
 cd backend
@@ -105,9 +84,7 @@ npm install
 npm start
 ```
 
-### 4. Subir o frontend
-
-Em outro terminal:
+4. Subir frontend (novo terminal)
 
 ```bash
 cd frontend
@@ -115,69 +92,32 @@ npm install
 npm run dev
 ```
 
-Aplicação local em:
+### Acessos locais
 
 - Frontend: `http://localhost:5173`
 - Backend: `http://localhost:3000`
 
-## Variáveis de Ambiente
-
-### Backend
-
-| Variável | Obrigatória | Descrição | Exemplo |
-|---|---|---|---|
-| `PORT` | Não | Porta da API | `3000` |
-| `MONGO_URI` | Sim | String de conexão com MongoDB | `mongodb+srv://...` |
-| `CORS_ORIGINS` | Sim (produção) | Origens permitidas, separadas por vírgula | `http://localhost:5173,https://seu-app.vercel.app` |
-
-### Frontend
-
-| Variável | Obrigatória | Descrição | Exemplo |
-|---|---|---|---|
-| `VITE_API_URL` | Sim | URL base da API | `http://localhost:3000` |
-
-## Endpoints da API
-
-Base URL (produção): `https://cadastro-clientes-fullstack.onrender.com`
-
-| Método | Rota | Descrição | Status |
-|---|---|---|---|
-| `GET` | `/` | Health check simples | `200` |
-| `GET` | `/status` | Health check | `200` |
-| `GET` | `/clientes` | Lista clientes cadastrados | `200` |
-| `POST` | `/clientes` | Cria novo cliente | `201`, `400` |
-
-### Exemplo de payload (POST `/clientes`)
-
-```json
-{
-  "nome": "Joao Silva",
-  "email": "joao@email.com",
-  "dataNascimento": "1995-08-10",
-  "cpf": "123.456.789-00"
-}
-```
-
 ## Deploy
 
-- Frontend (Vercel): [https://cadastro-clientes-fullstack.vercel.app/](https://cadastro-clientes-fullstack.vercel.app/)
-- Backend (Render): [https://cadastro-clientes-fullstack.onrender.com/](https://cadastro-clientes-fullstack.onrender.com/)
+- Frontend: [https://cadastro-clientes-fullstack.vercel.app/](https://cadastro-clientes-fullstack.vercel.app/)
+- Backend: [https://cadastro-clientes-fullstack.onrender.com/](https://cadastro-clientes-fullstack.onrender.com/)
 
-Para produção, manter no backend:
+## Documentação Técnica por Camada
 
-- `MONGO_URI` apontando para MongoDB Atlas
-- `CORS_ORIGINS` contendo o domínio do frontend publicado
+Para detalhes técnicos completos, consulte:
+
+- Frontend: [frontend/README.md](./frontend/README.md)
+- Backend: [backend/README.md](./backend/README.md)
 
 ## Melhorias Futuras
 
-- Implementar autenticação e autorização (JWT)
-- Adicionar edição e exclusão de clientes
-- Cobertura com testes unitários e de integração
-- Logs estruturados e monitoramento de erros
+- Autenticação/autorização (JWT)
+- Edição e exclusão de clientes
+- Testes automatizados (unitários/integrados)
+- CI/CD com validações automáticas
 
 ## Autor
 
-**Guilherme Henrique Guimaraes Lima**
+**Guilherme Henrique Guimarães Lima**
 
 - GitHub: [@guilhermehgl](https://github.com/guilhermehgl)
-

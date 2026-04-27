@@ -1,28 +1,25 @@
-# Backend – Cadastro de Clientes
+# Backend - Cadastro de Clientes
 
-API REST desenvolvida em Node.js com Express e MongoDB para cadastro e listagem de clientes.
+API REST em Node.js/Express para criação e listagem de clientes, com persistência em MongoDB via Mongoose.
 
-O projeto foi estruturado seguindo boas práticas de organização e separação de responsabilidades, visando escalabilidade e manutenção.
-
----
-
-## Tecnologias Utilizadas
+## Stack
 
 - Node.js
-- Express
-- MongoDB
+- Express 5
+- MongoDB Atlas
 - Mongoose
 - CORS
 - Dotenv
 
----
+## Responsabilidades da API
 
-## Pré-requisitos
+- Receber e validar requisições JSON
+- Persistir clientes no MongoDB
+- Garantir unicidade de `email` e `cpf`
+- Retornar mensagens de erro claras para consumo do frontend
+- Controlar origens permitidas via CORS
 
-- Node.js (v18 ou superior recomendado)
-- MongoDB rodando localmente ou em cloud (MongoDB Atlas)
-
-## Estrutura do Projeto
+## Estrutura Técnica
 
 ```plaintext
 backend/
@@ -32,7 +29,7 @@ backend/
 │   ├── controllers/
 │   │   └── clientController.js
 │   ├── models/
-│   │   └── Cliente.js
+│   │   └── cliente.js
 │   ├── routes/
 │   │   └── clienteRoutes.js
 │   ├── app.js
@@ -42,58 +39,89 @@ backend/
 └── README.md
 ```
 
----
+## Modelo de Dados (`Cliente`)
 
-## Configuração do Ambiente
+Campos principais:
 
-Este projeto utiliza variáveis de ambiente.
+- `nome`: obrigatório, mínimo de 3 caracteres
+- `email`: obrigatório e único
+- `dataNascimento`: data
+- `cpf`: obrigatório e único
+- `timestamps`: `createdAt` e `updatedAt`
 
-Crie um arquivo ".env" na raiz do backend com base no arquivo ".env.example" e preencha com seus próprios valores:
+## Variáveis de Ambiente
 
-.env
+Crie `backend/.env`:
+
+```env
 PORT=3000
 MONGO_URI=mongodb://127.0.0.1:27017/clientesdb
 CORS_ORIGINS=http://localhost:5173,https://cadastro-clientes-fullstack.vercel.app,https://*.vercel.app
+```
 
-## Instalação de dependencias 
+### Sobre `CORS_ORIGINS`
 
-Executar no terminal "npm install"
+- Lista separada por vírgula
+- Suporta wildcard (ex.: `https://*.vercel.app`)
+- Requests sem `Origin` (Postman/curl/health checks) são permitidas
 
-## Como rodar o projeto
+## Executar Localmente
 
-Executar no terminal "npm start"
-Servidor será iniciado em: http://localhost:3000
+### Requisitos
 
-## Endpoints da API
+- Node.js 18+
+- npm 9+
+- MongoDB local ou Atlas configurado
 
-- Criar cliente
-POST /clientes
+### Comandos
 
+```bash
+npm install
+npm start
+```
+
+API em: `http://localhost:3000`
+
+## Endpoints
+
+Base local: `http://localhost:3000`
+
+| Método | Rota | Descrição | Retorno |
+|---|---|---|---|
+| `GET` | `/` | status simples da API | `200` |
+| `GET` | `/status` | health check | `200` |
+| `GET` | `/clientes` | lista clientes | `200` |
+| `POST` | `/clientes` | cria cliente | `201`, `400` |
+
+### Exemplo `POST /clientes`
+
+```json
 {
-  "nome": "João Silva",
+  "nome": "Joao Silva",
   "email": "joao@email.com",
   "dataNascimento": "1995-08-10",
-  "cpf": "12345678900"
+  "cpf": "123.456.789-00"
 }
+```
 
-- Listar clientes
-GET /clientes
+## Tratamento de Erros
 
-Retorna todos os clientes cadastrados.
+- `400` para erro de validação do Mongoose
+- `400` para duplicidade (`code 11000`) com mensagem específica de campo
+- `500` para falhas inesperadas na listagem
 
-## Validações 
+## Scripts Disponíveis
 
-As validações principais são feitas no backend para garantir integridade dos dados:
+- `npm start`: inicia servidor em produção/local
 
-- Nome obrigatório
-- Email obrigatório e único
-- CPF obrigatório e único
-- Estrutura validada via Mongoose
+## Pontos de Evolução
 
-## Observações 
+- Adicionar camada de serviços para regras de negócio
+- Implementar testes de integração (Supertest)
+- Documentar API com Swagger/OpenAPI
 
-- Projeto desenvolvido para fins de aprendizado e portfólio, com foco em boas práticas de desenvolvimento backend.
-- Este projeto foi estruturado pensando em ambiente profissional, seguindo padrões utilizados no mercado para APIs REST com Node.js.
+## Autor
 
-## Autoria 
-- Guilherme Henrique Guimarães Lima
+**Guilherme Henrique Guimarães Lima**
+
+- GitHub: [@guilhermehgl](https://github.com/guilhermehgl)

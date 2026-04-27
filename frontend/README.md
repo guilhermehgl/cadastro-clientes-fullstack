@@ -1,113 +1,102 @@
-# Frontend – Cadastro de Clientes
+# Frontend - Cadastro de Clientes
 
-Aplicação frontend desenvolvida em React com Vite, responsável pela interface de cadastro, listagem e visualização de clientes, consumindo uma API REST.
+Aplicação React responsável pela interface do sistema, consumo da API e experiência do usuário no fluxo de cadastro/listagem de clientes.
 
-O projeto foi estruturado com foco em componentização, organização de código e boas práticas, simulando um cenário real de aplicação profissional.
+## Stack
 
----
-
-## Tecnologias Utilizadas
-
-- React (com Hooks)
+- React 19
 - Vite
-- JavaScript (JSX)
 - Axios
-- CSS puro
+- JavaScript (ESM/JSX)
+- CSS
 - ESLint
 
----
+## Responsabilidades do Frontend
 
-## Pré-requisitos
+- Renderização da interface principal
+- Abertura/fechamento de modal de cadastro
+- Envio de dados para a API (`POST /clientes`)
+- Busca de clientes (`GET /clientes`)
+- Busca local por nome, ordenação e paginação
+- Exibição de mensagens de erro vindas do backend
 
-- Node.js (v18 ou superior recomendado)
-- Backend do projeto em execução
+## Estrutura Técnica
 
----
-
-## Estrutura do Projeto
-```
+```plaintext
 frontend/
 ├── src/
 │   ├── components/
 │   │   ├── ClientForm/
-│   │   │   ├── ClientForm.jsx
-│   │   │   └── ClientForm.css
 │   │   ├── ClientTable/
-│   │   │   ├── ClientTable.jsx
-│   │   │   └── ClientTable.css
-│   │   ├── ClientFind/
-│   │   │   ├── ClientFind.jsx
-│   │   │   └── ClientFind.css
 │   │   └── Modal/
-│   │       ├── Modal.jsx
-│   │       └── Modal.css
 │   ├── services/
 │   │   └── api.js
 │   ├── utils/
-│   │   ├── calcularIdade.js
 │   │   ├── cpf.js
 │   │   ├── email.js
 │   │   ├── nome.js
-│   │   └── obrigatorio.js
+│   │   ├── obrigatorio.js
+│   │   └── calcularIdade.js
 │   ├── App.jsx
 │   └── main.jsx
-├── index.html
+├── .env.example
 ├── package.json
 └── README.md
 ```
 
----
+## Fluxo da Aplicação
 
-## Configuração do Ambiente
+1. `App.jsx` carrega clientes via `api.get("/clientes")`
+2. `ClientTable` recebe os dados e aplica busca/ordenação/paginação
+3. `ClientForm` valida e envia dados via `api.post("/clientes")`
+4. Após sucesso, o formulário chama atualização da lista
 
-Este projeto utiliza variáveis de ambiente.
+## Variáveis de Ambiente
 
-Crie um arquivo ".env" na raiz do frontend com base no arquivo ".env.example" e preencha com seus próprios valores:
+Crie `frontend/.env`:
 
-.env
+```env
 VITE_API_URL=http://localhost:3000
+```
 
-## Instalação de dependencias 
+## Executar Localmente
 
-Executar no terminal "npm install"
+### Requisitos
 
-## Como rodar o projeto
+- Node.js 18+
+- npm 9+
+- Backend do projeto em execução
 
-Executar no terminal "npm run dev"
-Aplicação será iniciada em: http://localhost:5173
+### Comandos
 
-## Funcionalidades
+```bash
+npm install
+npm run dev
+```
 
-- Cadastro de clientes
-- Validação de dados no frontend
-- Listagem de clientes em tabela
-- Pesquisa por nome
-- Ordenação alfabética (A–Z / Z–A)
-- Paginação
-- Visualização responsiva (desktop e mobile)
-- Modal para cadastro
+Aplicação: `http://localhost:5173`
 
-## Organização e arquitetura
+## Scripts Disponíveis
 
-- App.jsx: componente raiz, responsável por:
+- `npm run dev`: ambiente de desenvolvimento
+- `npm run build`: build de produção
+- `npm run preview`: pré-visualização do build
+- `npm run lint`: análise estática com ESLint
 
-    - controlar o estado global da aplicação
-    - buscar dados da API
-    - gerenciar abertura/fechamento do modal
+## Integração com Backend
 
-- Components: cada responsabilidade isolada em um componente
+- Base URL configurada em `src/services/api.js`
+- Timeout padrão de `10s`
+- Erros de API são tratados no formulário com mensagens amigáveis
 
-- Utils: regras de negócio e validações reutilizáveis
+## Pontos de Evolução
 
-- Services: comunicação com a API centralizada
+- Testes de interface (React Testing Library)
+- Estados de loading/erro globais
+- Melhor tratamento de falhas de rede na listagem inicial
 
-- CSS por componente: facilita manutenção e leitura
+## Autor
 
+**Guilherme Henrique Guimarães Lima**
 
-## Observações 
-
-- Projeto desenvolvido para fins de aprendizado e portfólio, e demonstração de boas práticas em React.
-- O frontend depende do backend para funcionamento completo. O projeto foi desenvolvido com foco em aprendizado e portfólio.
-
-# Autoria 
-- Guilherme Henrique Guimarães Lima
+- GitHub: [@guilhermehgl](https://github.com/guilhermehgl)
