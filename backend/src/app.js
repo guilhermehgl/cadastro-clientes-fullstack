@@ -10,6 +10,49 @@ import clienteRoutes from "./routes/clienteRoutes.js";
 // Cria a instância do Express
 const app = express();
 
+function normalizeOrigin(value) {
+  if (!value) return "";
+
+  const trimmed = value.trim().replace(/\/+$/, "");
+  if (!trimmed) return "";
+
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    try {
+      return new URL(trimmed).origin.toLowerCase();
+    } catch {
+      return trimmed.toLowerCase();
+    }
+  }
+
+  return trimmed.toLowerCase();
+}
+
+function isAllowedOrigin(origin, origins) {
+  const normalizedOrigin = normalizeOrigin(origin);
+
+  return origins.some((item) => {
+    const normalizedItem = normalizeOrigin(item);
+
+    if (!normalizedItem) {
+      return false;
+    }
+
+    if (normalizedItem === normalizedOrigin) {
+      return true;
+    }
+
+    // Permite padrões como https://*.vercel.app
+    if (normalizedItem.includes("*")) {
+      const regex = new RegExp(
+        `^${normalizedItem.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*")}$`
+      );
+      return regex.test(normalizedOrigin);
+    }
+
+    return false;
+  });
+}
+
 // Permite acesso apenas das origens configuradas
 const allowedOrigins = (process.env.CORS_ORIGINS || "")
   .split(",")
@@ -28,7 +71,7 @@ const corsOptions = {
       return callback(null, true);
     }
 
-    if (allowedOrigins.includes(origin)) {
+    if (isAllowedOrigin(origin, allowedOrigins)) {
       return callback(null, true);
     }
 
@@ -37,6 +80,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // Permite receber JSON no body das requisições
 app.use(express.json());
