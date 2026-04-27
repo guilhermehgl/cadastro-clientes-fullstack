@@ -7,7 +7,7 @@ import { validarCampos } from "../../utils/obrigatorio";
 import "./clientForm.css";
 
 // Componente do formulário de cliente
-export default function ClientForm({ atualizar, onClose }) {
+export default function ClientForm({ onClose }) {
   // Estados do formulário
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -42,7 +42,6 @@ export default function ClientForm({ atualizar, onClose }) {
       setDataNascimento("");
       setCpf("");
 
-      atualizar();        // Atualiza a lista de clientes
       if (onClose) onClose(); // Fecha o modal se fornecido
     } catch (error) {
       setErro("Erro ao cadastrar cliente. Tente novamente.");

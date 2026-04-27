@@ -53,6 +53,7 @@ Crie um arquivo ".env" na raiz do backend com base no arquivo ".env.example" e p
 .env
 PORT=3000
 MONGO_URI=mongodb://127.0.0.1:27017/clientesdb
+CORS_ORIGINS=http://localhost:5173,https://seu-frontend.vercel.app
 
 ## Instalação de dependencias 
 

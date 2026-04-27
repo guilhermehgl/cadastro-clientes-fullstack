@@ -10,8 +10,33 @@ import clienteRoutes from "./routes/clienteRoutes.js";
 // Cria a instância do Express
 const app = express();
 
-// Permite que o frontend acesse a API
-app.use(cors());
+// Permite acesso apenas das origens configuradas
+const allowedOrigins = (process.env.CORS_ORIGINS || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const corsOptions = {
+  origin(origin, callback) {
+    // Permite requests sem origin (curl, Postman, health checks)
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    // Sem lista configurada, libera todas as origens (ambiente local)
+    if (allowedOrigins.length === 0) {
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Origem não permitida pelo CORS"));
+  }
+};
+
+app.use(cors(corsOptions));
 
 // Permite receber JSON no body das requisições
 app.use(express.json());
