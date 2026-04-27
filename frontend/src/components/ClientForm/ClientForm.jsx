@@ -44,7 +44,8 @@ export default function ClientForm({ onClose }) {
 
       if (onClose) onClose(); // Fecha o modal se fornecido
     } catch (error) {
-      setErro("Erro ao cadastrar cliente. Tente novamente.");
+      const mensagemBackend = error?.response?.data?.error;
+      setErro(mensagemBackend || "Erro ao cadastrar cliente. Tente novamente.");
     } finally {
       setLoading(false);
     }
